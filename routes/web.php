@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('admin/log', function () {
+    return view('adminlog');
+});
