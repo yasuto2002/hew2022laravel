@@ -14,5 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('admin/log','LoginController@index');
-Route::post('admin/log','LoginController@post');
+Route::get('admin','LoginController@index');
+Route::post('admin','LoginController@post');
+Route::get('admin/home','LoginController@home');
+Route::get('maile',function(){
+    return view('maile');
+});
+Route::get('img',function(){
+    return view('admin/imgup');
+});
+Route::post('img','ImgController@create');

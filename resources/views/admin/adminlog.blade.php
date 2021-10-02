@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-   <form method="POST" action="/admin/log">
+   <form method="POST" action="/admin">
        @csrf
        <p>id</p>
        @error('id')

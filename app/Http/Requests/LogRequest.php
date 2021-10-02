@@ -13,7 +13,7 @@ class LogRequest extends FormRequest
      */
     public function authorize()
     {
-        if($this -> path() == 'admin/log'){
+        if($this -> path() == 'admin'){
             return true;
         }else{
             return false;
