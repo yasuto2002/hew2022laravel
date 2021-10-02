@@ -23,4 +23,8 @@ Route::get('maile',function(){
 Route::get('img',function(){
     return view('admin/imgup');
 });
+Route::get('images',function(){
+    return view('admin/imagesup');
+});
+Route::post('images','ImagesController@create');
 Route::post('img','ImgController@create');

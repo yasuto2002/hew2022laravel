@@ -8,17 +8,17 @@ use Illuminate\Support\Facades\Storage;
 
 class ImgController extends Controller
 {
-    public function store(ItemRequest $request)
-    {
-        $disk = Storage::disk('s3');
-        $images = $request->file('item_url');
-        foreach ( $images as $image) {
-            $path = $disk->putFile('itemImages', $image, 'public');
-            $url[] = $disk->url($path);
-        }
+    // public function store(ItemRequest $request)
+    // {
+    //     $disk = Storage::disk('s3');
+    //     $images = $request->file('item_url');
+    //     foreach ( $images as $image) {
+    //         $path = $disk->putFile('itemImages', $image, 'public');
+    //         $url[] = $disk->url($path);
+    //     }
 
-        return view('item.top');
-    }
+    //     return view('item.top');
+    // }
     public function index(Request $request){
         return view('s3up');
     }
