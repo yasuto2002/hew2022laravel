@@ -19,10 +19,10 @@
    <form method="POST" action="/admin">
        @csrf
        <p>id</p>
-       @error('id')
+       @error('maile')
         <p class="mes">{{$message}}</p>
        @enderror
-       <input type="text" name="id" value = "{{old('id')}}">
+       <input type="email" name="maile" value = "{{old('id')}}">
        <br>
        <p>password</p>
        @error('pas')
