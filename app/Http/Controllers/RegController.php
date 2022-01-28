@@ -13,8 +13,12 @@ class RegController extends Controller
      */
     public function index(Request $request)
     {
-        $item = ['data'=>true];
-        return json_encode($item,JSON_PRETTY_PRINT);
+        header("Access-Control-Allow-Origin: *");  //CORS
+        header('Access-Control-Allow-Methods', '*');
+        header('Access-Control-Allow-Headers', 'Content-Type,Authorization, X-Requested-With,X-CSRF-Token,X-XSRF-TOKEN');
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With");
+        $item = ['data'=>$request->id];
+        return $item;
     }
 
     /**
@@ -35,8 +39,16 @@ class RegController extends Controller
      */
     public function store(Request $request)
     {
+        // header("Access-Control-Allow-Origin: *");  //CORS
+        // header('Access-Control-Allow-Methods', '*');
+        // header('Access-Control-Allow-Headers', 'Authorization, X-Requested-With,X-CSRF-Token,X-XSRF-TOKEN');
+        // header("Access-Control-Allow-Headers: Origin, X-Requested-With");
+        // header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, X-Requested-With');
+        // header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        // header('Access-Control-Allow-Headers', 'Content-Type');
+        // header('Content-type: application/json; charset=UTF-8');
         $item = ['data'=>$request->id];
-        return json_encode($item,JSON_PRETTY_PRINT);
+        return $item;
     }
 
     /**

@@ -14,6 +14,7 @@
 //     return view('admin/propertieup');
 // });
 Route::get('serch','SearchController@index');
+Route::post('serch','SearchController@post');
 Route::get('admin/upload','Uppropertie@index');
 Route::post('admin/upload','Uppropertie@upload');
 Route::resource('rest','RestappController');
