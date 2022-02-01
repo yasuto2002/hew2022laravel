@@ -39,7 +39,9 @@ class RestappController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $item = ['data'=>$request->id];
+        return $item;
+        // return $item->toArray();
     }
 
     /**

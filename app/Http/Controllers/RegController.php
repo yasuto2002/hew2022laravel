@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegController extends Controller
 {
@@ -39,16 +40,27 @@ class RegController extends Controller
      */
     public function store(Request $request)
     {
-        // header("Access-Control-Allow-Origin: *");  //CORS
-        // header('Access-Control-Allow-Methods', '*');
-        // header('Access-Control-Allow-Headers', 'Authorization, X-Requested-With,X-CSRF-Token,X-XSRF-TOKEN');
-        // header("Access-Control-Allow-Headers: Origin, X-Requested-With");
-        // header('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, X-Requested-With');
-        // header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-        // header('Access-Control-Allow-Headers', 'Content-Type');
-        // header('Content-type: application/json; charset=UTF-8');
-        $item = ['data'=>$request->id];
-        return $item;
+        $param=[
+            'name' => $request->kName,
+            'mail_address' => $request->mail_address,
+            'password' => $request->password,
+            'sex' => $request->sex,
+            'kname' => $request->hName,
+            'birthday' => $request->birthday
+        ];
+        DB::beginTransaction();
+        try{
+            DB::table('users')->insert($param);
+            $flg = ['state'=>true];
+            return $flg;
+        }catch(\Exception $e){
+            $em = $e->getCode();
+            $flg = ['state'=>$em];
+            return $flg;
+        }
+        return $flg;
+        // $item = ['data'=>$request->hName];
+        // return $item;
     }
 
     /**
