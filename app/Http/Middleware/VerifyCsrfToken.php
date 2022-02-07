@@ -20,6 +20,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'reg',
-        'rest'
+        'rest',
+        'checkmaile',
+        'auth'
     ];
 }
