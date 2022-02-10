@@ -21,6 +21,9 @@ Route::resource('rest','RestappController');
 Route::resource('checkmaile','CheckmaileController');
 Route::resource('reg','RegController');
 Route::resource('auth','AuthenController');
+Route::resource('LoginAuth','LoginAuthController');
+Route::resource('Wordserch','WordserchController');
+Route::resource('Condiserch','CondiserchController');
 Route::get('/', function () {
     return view('welcome');
 });

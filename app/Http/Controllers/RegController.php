@@ -42,10 +42,11 @@ class RegController extends Controller
     {
         $rand_str = chr(mt_rand(65,90)) . chr(mt_rand(65,90)) . chr(mt_rand(65,90)) .
             chr(mt_rand(65,90)) . chr(mt_rand(65,90)) . chr(mt_rand(65,90));
+        $pas = password_hash($request->password, PASSWORD_DEFAULT);
         $param=[
             'name' => $request->kName,
             'mail_address' => $request->mail_address,
-            'password' => $request->password,
+            'password' => $pas,
             'sex' => $request->sex,
             'kname' => $request->hName,
             'birthday' => $request->birthday,

@@ -22,6 +22,9 @@ class VerifyCsrfToken extends Middleware
         'reg',
         'rest',
         'checkmaile',
-        'auth'
+        'auth',
+        'LoginAuth',
+        'Wordserch',
+        'Condiserch'
     ];
 }

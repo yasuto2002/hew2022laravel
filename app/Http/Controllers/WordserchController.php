@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
-class AuthenController extends Controller
+class WordserchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,25 +37,14 @@ class AuthenController extends Controller
     {
         DB::beginTransaction();
         try{
-            $user = DB::table('tentative_users')->select('password', 'name','security_code','sex','birthday','kname')->where('mail_address',$request->maile)->where('security_code',$request->security_code)->get();
-            // $pas = password_hash($user[0]->password, PASSWORD_DEFAULT);
-            if($user[0]->security_code == $request->security_code){
-                $param=[
-                    'name' => $user[0]->name,
-                    'mail_address' => $request->maile,
-                    'password' => $user[0]->password,
-                    'sex' => $user[0]->sex,
-                    'kname' => $user[0]->kname,
-                    'birthday' => $user[0]->birthday,
-                ];
-                DB::table('users')->insert($param);
-            }
+            $properties = DB::table('properties')->where('remarks','like','%'.$request->word.'%')->skip($request->skip)->take(4)->get();
+            $count = DB::table('properties')->where('remarks','like','%'.$request->word.'%')->count();
+            $ret = ['properties'=>$properties,'count'=>$count];
             DB::commit();
-            $ret = ['state'=>true];
             return $ret;
         }catch(\Exception $e){
             DB::commit();
-            $ret = ['state'=>false];
+            $ret = ['properties'=>$e->getMessage()];
             return $ret;
         }
     }

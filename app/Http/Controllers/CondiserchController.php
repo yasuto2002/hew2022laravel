@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Property;
 
-
-class AuthenController extends Controller
+class CondiserchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,14 @@ class AuthenController extends Controller
      */
     public function index()
     {
-        //
+        // $items = Property::StstionSerch(20)->pluck('id');
+        $items = Property::ManagementSerch(3)->pluck('id');
+        $items = Property::PriceSerch(14)->whereIn('id',$items)->get();
+        if($items != null){
+        return $items->toArray();
+        }
+
+        return 'a';
     }
 
     /**
@@ -36,29 +42,7 @@ class AuthenController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-        try{
-            $user = DB::table('tentative_users')->select('password', 'name','security_code','sex','birthday','kname')->where('mail_address',$request->maile)->where('security_code',$request->security_code)->get();
-            // $pas = password_hash($user[0]->password, PASSWORD_DEFAULT);
-            if($user[0]->security_code == $request->security_code){
-                $param=[
-                    'name' => $user[0]->name,
-                    'mail_address' => $request->maile,
-                    'password' => $user[0]->password,
-                    'sex' => $user[0]->sex,
-                    'kname' => $user[0]->kname,
-                    'birthday' => $user[0]->birthday,
-                ];
-                DB::table('users')->insert($param);
-            }
-            DB::commit();
-            $ret = ['state'=>true];
-            return $ret;
-        }catch(\Exception $e){
-            DB::commit();
-            $ret = ['state'=>false];
-            return $ret;
-        }
+        //
     }
 
     /**
