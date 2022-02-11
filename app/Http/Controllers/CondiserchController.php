@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Property;
-
+use App\Services\SerchServices;
 class CondiserchController extends Controller
 {
     /**
@@ -42,7 +42,7 @@ class CondiserchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return SerchServices::serch($request);
     }
 
     /**
