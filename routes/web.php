@@ -24,6 +24,9 @@ Route::resource('auth','AuthenController');
 Route::resource('LoginAuth','LoginAuthController');
 Route::resource('Wordserch','WordserchController');
 Route::resource('Condiserch','CondiserchController');
+Route::resource('Detail','DetailController');
+Route::resource('Good','GoodController');
+Route::resource('Bad','BadController');
 Route::get('/', function () {
     return view('welcome');
 });

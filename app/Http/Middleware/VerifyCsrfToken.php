@@ -25,6 +25,9 @@ class VerifyCsrfToken extends Middleware
         'auth',
         'LoginAuth',
         'Wordserch',
-        'Condiserch'
+        'Condiserch',
+        'Detail',
+        'Good',
+        'Bad'
     ];
 }
