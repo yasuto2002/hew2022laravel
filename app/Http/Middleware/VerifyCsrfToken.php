@@ -28,6 +28,8 @@ class VerifyCsrfToken extends Middleware
         'Condiserch',
         'Detail',
         'Good',
-        'Bad'
+        'Bad',
+        'Mypage',
+        'PasChange'
     ];
 }
