@@ -30,6 +30,8 @@ class VerifyCsrfToken extends Middleware
         'Good',
         'Bad',
         'Mypage',
-        'PasChange'
+        'PasChange',
+        'UserUpdate',
+        'DeleteUser'
     ];
 }
