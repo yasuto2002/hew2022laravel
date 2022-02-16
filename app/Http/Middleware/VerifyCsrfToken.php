@@ -32,6 +32,7 @@ class VerifyCsrfToken extends Middleware
         'Mypage',
         'PasChange',
         'UserUpdate',
-        'DeleteUser'
+        'DeleteUser',
+        'Content'
     ];
 }
