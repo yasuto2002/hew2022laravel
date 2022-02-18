@@ -32,6 +32,7 @@ Route::resource('PasChange','PasChangeController');
 Route::resource('UserUpdate','UserUpdateController');
 Route::resource('DeleteUser','DeleteUserUpdateController');
 Route::resource('Content','ContentController');
+Route::resource('GetProperty','GetPropertyController');
 Route::get('/', function () {
     return view('welcome');
 });

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-class MypageController extends Controller
+class GetPropertyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,6 +23,7 @@ class MypageController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -35,11 +36,13 @@ class MypageController extends Controller
     {
         DB::beginTransaction();
         try{
-            $user  = DB::table('users')->where('mail_address',$request->mail_address)->first();
-            $point = DB::table('game_histories')->where('users_id',$user->id)->sum('earned_points');
-            return ['status'=>true,'user' => $user,'point'=>$point];
+            $property = DB::table('properties')->where('id',$request->number)->first();
+            DB::commit();
+            return ['property'=>$property,'state'=>true];
         }catch(\Exception $e){
-            return ['status'=>$e->getMessage(),'user' => null,'point'=>null];
+            DB::commit();
+            $flg = ['state'=>false];
+            return $flg;
         }
     }
 
