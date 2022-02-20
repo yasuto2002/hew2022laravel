@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class NewArrivalsController extends Controller
 {
     /**
@@ -34,7 +34,16 @@ class NewArrivalsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+       try{
+            $property = DB::table('properties')->orderBy('id', 'desc')->take(9)->get();
+            DB::commit();
+            return ['property'=>$property,'state'=>true];
+        }catch(\Exception $e){
+            DB::commit();
+            $flg = ['state'=>false,'property'=>null];
+            return $flg;
+        }
     }
 
     /**

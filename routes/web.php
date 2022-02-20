@@ -34,6 +34,7 @@ Route::resource('DeleteUser','DeleteUserUpdateController');
 Route::resource('Content','ContentController');
 Route::resource('GetProperty','GetPropertyController');
 Route::resource('GpsSerch','GpsSerchController');
+Route::resource('NewArrivals','NewArrivalsController');
 Route::get('/', function () {
     return view('welcome');
 });

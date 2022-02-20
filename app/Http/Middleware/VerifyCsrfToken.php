@@ -35,6 +35,7 @@ class VerifyCsrfToken extends Middleware
         'DeleteUser',
         'Content',
         'GetProperty',
-        'GpsSerch'
+        'GpsSerch',
+        'NewArrivals'
     ];
 }
