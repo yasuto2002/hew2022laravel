@@ -36,6 +36,7 @@ class VerifyCsrfToken extends Middleware
         'Content',
         'GetProperty',
         'GpsSerch',
-        'NewArrivals'
+        'NewArrivals',
+        'Favorites'
     ];
 }
