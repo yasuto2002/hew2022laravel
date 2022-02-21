@@ -28,7 +28,7 @@ class Property extends Model
         return $query->where('construction',$num);
     }
     public static function scopeConstruction_DateSerch($query,$num){
-        return $query->whereYear('construction_date','<=',$num);
+        return $query->whereYear('construction_date','>=',$num);
     }
     public static function scopestation_walkSerch($query,$num){
         return $query->where('station_walk','<=',$num);

@@ -2,13 +2,13 @@
 
 namespace App\Services;
 use App\Property;
+use Illuminate\Support\Facades\DB;
 class SerchServices
 {
   public static function serch($data){
     try{
       $items = Property::all()->pluck('id');
       $count = count($items);
-
       if($data->lower != "null"){
         $items= Property::LowerSerch($data->lower)->whereIn('id',$items)->pluck('id');
         $count = count($items);
@@ -52,6 +52,10 @@ class SerchServices
           $items= Property::Upstation_walkSerch()->whereIn('id',$items)->pluck('id');
           $count = count($items);
         }
+      }
+      if($data->root != "null"){
+        $items = DB::table('properties')->join('station_routes', 'properties.station_id', '=', 'station_routes.station_id')->select('properties.*')->where('station_routes.id',$data->root)->whereIn('properties.id',$items)->pluck('id');
+        $count = count($items);
       }
       $items = Property::whereIn('id',$items)->skip($data->skip)->take(4)->get();
     // $items = Property::ManagementSerch(3)->whereIn('id',$items)->pluck('id');
