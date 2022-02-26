@@ -36,6 +36,7 @@ Route::resource('GetProperty','GetPropertyController');
 Route::resource('GpsSerch','GpsSerchController');
 Route::resource('NewArrivals','NewArrivalsController');
 Route::resource('Favorites','FavoritesController');
+Route::resource('GameRecord','GameRecordController');
 Route::get('/', function () {
     return view('welcome');
 });

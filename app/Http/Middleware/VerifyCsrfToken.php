@@ -37,6 +37,7 @@ class VerifyCsrfToken extends Middleware
         'GetProperty',
         'GpsSerch',
         'NewArrivals',
-        'Favorites'
+        'Favorites',
+        'GameRecord'
     ];
 }
