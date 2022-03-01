@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: http://175.41.213.26');
 /*
 |--------------------------------------------------------------------------
 | Create The Application
