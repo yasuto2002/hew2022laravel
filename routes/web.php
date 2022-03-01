@@ -15,8 +15,8 @@
 // });
 Route::get('serch','SearchController@index');
 Route::post('serch','SearchController@post');
-Route::get('admin/upload','Uppropertie@index');
-Route::post('admin/upload','Uppropertie@upload');
+// Route::get('admin/upload','Uppropertie@index');
+// Route::post('admin/upload','Uppropertie@upload');
 Route::resource('rest','RestappController');
 Route::resource('checkmaile','CheckmaileController');
 Route::resource('reg','RegController');
@@ -37,21 +37,21 @@ Route::resource('GpsSerch','GpsSerchController');
 Route::resource('NewArrivals','NewArrivalsController');
 Route::resource('Favorites','FavoritesController');
 Route::resource('GameRecord','GameRecordController');
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('admin','LoginController@index');
-Route::post('admin','LoginController@post');
-Route::get('admin/home','LoginController@home');
-Route::get('maile',function(){
-    return view('maile');
-});
-Route::get('admin/img',function(){
-    return view('admin/imgup');
-});
-Route::get('admin/images',function(){
-    return view('admin/imagesup');
-});
-Route::post('images','ImagesController@create');
-Route::post('img','ImgController@create');
-Route::get('search','SearchController@index');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('admin','LoginController@index');
+// Route::post('admin','LoginController@post');
+// Route::get('admin/home','LoginController@home');
+// Route::get('maile',function(){
+//     return view('maile');
+// });
+// Route::get('admin/img',function(){
+//     return view('admin/imgup');
+// });
+// Route::get('admin/images',function(){
+//     return view('admin/imagesup');
+// });
+// Route::post('images','ImagesController@create');
+// Route::post('img','ImgController@create');
+// Route::get('search','SearchController@index');
