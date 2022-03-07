@@ -39,6 +39,8 @@ Route::resource('Favorites','FavoritesController');
 Route::resource('GameRecord','GameRecordController');
 Route::resource('Buy','BuyController');
 Route::resource('BuySearch','BuySearchController');
+Route::resource('BuySearch','BuySearchController');
+Route::resource('PurchaseSearch','PurchaseSearchController');
 // Route::get('/', function () {
 //     return view('welcome');
 // });

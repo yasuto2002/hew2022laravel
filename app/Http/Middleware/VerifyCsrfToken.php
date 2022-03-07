@@ -40,6 +40,7 @@ class VerifyCsrfToken extends Middleware
         'Favorites',
         'GameRecord',
         'Buy',
-        'BuySearch'
+        'BuySearch',
+        'PurchaseSearch'
     ];
 }
