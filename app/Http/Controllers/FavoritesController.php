@@ -37,9 +37,9 @@ class FavoritesController extends Controller
         DB::beginTransaction();
         try{
                         $Uid = DB::table('users')->select('id')->where('mail_address',$request->mail_address)->first();
-            $properties = DB::table('properties')->join('goods', 'properties.id', '=', 'goods.id')->select('properties.*')->where('users_id',$Uid->id)->skip($request->skip)->take(4)->get();
+            $properties = DB::table('properties')->join('goods', 'properties.id', '=', 'goods.id')->select('properties.*')->where('users_id',$Uid->id)->where('view_flg', null)->skip($request->skip)->take(4)->get();
 
-            $count = DB::table('properties')->join('goods', 'properties.id', '=', 'goods.id')->select('properties.*')->where('users_id',$Uid->id)->count();
+            $count = DB::table('properties')->join('goods', 'properties.id', '=', 'goods.id')->select('properties.*')->where('users_id',$Uid->id)->where('view_flg', null)->count();
             $ret = ['state'=>true,'properties'=>$properties,'count'=>$count];
             DB::commit();
             return $ret;

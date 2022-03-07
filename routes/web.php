@@ -38,6 +38,7 @@ Route::resource('NewArrivals','NewArrivalsController');
 Route::resource('Favorites','FavoritesController');
 Route::resource('GameRecord','GameRecordController');
 Route::resource('Buy','BuyController');
+Route::resource('BuySearch','BuySearchController');
 // Route::get('/', function () {
 //     return view('welcome');
 // });

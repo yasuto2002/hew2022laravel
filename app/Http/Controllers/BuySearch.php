@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-class MypageController extends Controller
+
+class BuySearch extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,6 +23,7 @@ class MypageController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -35,14 +36,17 @@ class MypageController extends Controller
     {
         DB::beginTransaction();
         try{
-            $user  = DB::table('users')->where('mail_address',$request->mail_address)->first();
-            $Uid = DB::table('users')->select('id')->where('mail_address',$request->mail_address)->first();
-            $first = DB::table('properties')->join('goods', 'properties.id', '=', 'goods.id')->select('properties.*')->where('users_id',$Uid->id)->first();
-            $point = DB::table('game_histories')->where('users_id',$user->id)->sum('earned_points');
-            $Buy = DB::table('properties')->join('purchase_histories', 'properties.id', '=', 'purchase_histories.properties_id')->select('properties.*')->where('mail_address',$request->mail_address)->first();
-            return ['status'=>true,'user' => $user,'point'=>$point,'first'=>$first,'buy'=>$Buy];
+                        $Uid = DB::table('users')->select('id')->where('mail_address',$request->mail_address)->first();
+            $properties = DB::table('properties')->join('goods', 'properties.id', '=', 'goods.id')->select('properties.*')->where('users_id',$Uid->id)->where('view_flg', null)->skip($request->skip)->take(4)->get();
+
+            $count = DB::table('properties')->join('goods', 'properties.id', '=', 'goods.id')->select('properties.*')->where('users_id',$Uid->id)->where('view_flg', null)->count();
+            $ret = ['state'=>true,'properties'=>$properties,'count'=>$count];
+            DB::commit();
+            return $ret;
         }catch(\Exception $e){
-            return ['status'=>$e->getMessage(),'user' => null,'point'=>null,'first'=>null];
+            DB::commit();
+            $ret = ['state'=>false,'properties'=>$e->getMessage()];
+            return $ret;
         }
     }
 
