@@ -37,8 +37,8 @@ class WordserchController extends Controller
     {
         DB::beginTransaction();
         try{
-            $properties = DB::table('properties')->where('remarks','like','%'.$request->word.'%')->skip($request->skip)->take(4)->get();
-            $count = DB::table('properties')->where('remarks','like','%'.$request->word.'%')->count();
+            $properties = DB::table('properties')->where('remarks','like','%'.$request->word.'%')->where('view_flg', null)->skip($request->skip)->take(4)->get();
+            $count = DB::table('properties')->where('remarks','like','%'.$request->word.'%')->where('view_flg', null)->count();
             $ret = ['properties'=>$properties,'count'=>$count];
             DB::commit();
             return $ret;

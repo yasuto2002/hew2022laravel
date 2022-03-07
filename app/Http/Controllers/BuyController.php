@@ -1,25 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use Aws\Ses\SesClient;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Aws\Ses\SesClient;
 
-class RegController extends Controller
+class BuyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        header("Access-Control-Allow-Origin: *");  //CORS
-        header('Access-Control-Allow-Methods', '*');
-        header('Access-Control-Allow-Headers', 'Content-Type,Authorization, X-Requested-With,X-CSRF-Token,X-XSRF-TOKEN');
-        header("Access-Control-Allow-Headers: Origin, X-Requested-With");
-        $item = ['data'=>$request->id];
-        return $item;
+        //
     }
 
     /**
@@ -40,21 +36,29 @@ class RegController extends Controller
      */
     public function store(Request $request)
     {
-        $rand_str = chr(mt_rand(65,90)) . chr(mt_rand(65,90)) . chr(mt_rand(65,90)) .
-            chr(mt_rand(65,90)) . chr(mt_rand(65,90)) . chr(mt_rand(65,90));
-        $pas = password_hash($request->password, PASSWORD_DEFAULT);
-        $param=[
-            'name' => $request->kName,
-            'mail_address' => $request->mail_address,
-            'password' => $pas,
-            'sex' => $request->sex,
-            'kname' => $request->hName,
-            'birthday' => $request->birthday,
-            'security_code' => $rand_str
-        ];
         DB::beginTransaction();
         try{
-            DB::table('tentative_users')->insert($param);
+            $confirmation = DB::table('properties')->select('view_flg')->where('id', $request->properties_id)->first();
+            if($confirmation->view_flg == null){
+            $rand_num = rand(100000, 999999);
+            $param=[
+                'properties_id' => $request->properties_id,
+                'mail_address' => $request->mail_address,
+                'purchase_price' => $request->purchase_price,
+                'discount_amount' => $request->discount_amount,
+                'furigana' => $request->furigana,
+                'phone_number' => $request->phone_number,
+                'street_address' => $request->street_address,
+                'postal_code' => $request->postal_code,
+                'search_password' => $rand_num,
+                'name' => $request->name,
+                'card' => $request->card,
+            ];
+            DB::table('purchase_histories')->insert($param);
+            $param=[
+                'view_flg'=>true
+            ];
+            DB::table('properties')->where('id', $request->properties_id)->update($param);
             DB::commit();
             $ses = SesClient::factory(array(
                 'version'=> 'latest',
@@ -72,32 +76,33 @@ class RegController extends Controller
             'Message' => [
             'Subject' => [
             'Charset' => 'UTF-8',
-            'Data' => 'TROBLE HOUSE認証コード',
+            'Data' => 'TROBLE HOUSE購入番号',
             ],
             'Body' => [
             'Text' => [
             'Charset' => 'UTF-8',
-            'Data' => $rand_str,
+            'Data' => $rand_num,
             ],
             ],
             ],
             ]);
 
             $messageId = $result->get('MessageId');
-            DB::commit();
-            $flg = ['state'=>true];
+            $flg = ['state'=>true,'num'=>$rand_num];
             return $flg;
-        }catch(\Exception $e){
-            // $em = $e->getCode();
-            DB::commit();
-            $flg = ['state'=>false];
+        }else{
+            $flg = ['state'=>false,'num'=>$confirmation->view_flg];
             return $flg;
         }
-        // DB::table('users')->insert($param);
-        //  $flg = ['state'=>true];
-        return $flg;
-        // $item = ['data'=>$request->hName];
-        // return $item;
+        }catch(\Exception $e){
+            DB::commit();
+            $flg = ['state'=>$e->getMessage()];
+            return $flg;
+        }
+        catch (SesException $error) {
+            $flg = ['state'=>$error->getAwsErrorMessage()];
+            return $flg;
+}
     }
 
     /**

@@ -36,7 +36,7 @@ class NewArrivalsController extends Controller
     {
         DB::beginTransaction();
        try{
-            $property = DB::table('properties')->orderBy('id', 'desc')->take(9)->get();
+            $property = DB::table('properties')->where('view_flg', null)->orderBy('id', 'desc')->take(9)->get();
             DB::commit();
             return ['property'=>$property,'state'=>true];
         }catch(\Exception $e){

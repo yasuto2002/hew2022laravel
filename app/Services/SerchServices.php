@@ -7,7 +7,7 @@ class SerchServices
 {
   public static function serch($data){
     try{
-      $items = Property::all()->pluck('id');
+      $items = Property::all()->where('view_flg', null)->pluck('id');
       $count = count($items);
       if($data->lower != "null"){
         $items= Property::LowerSerch($data->lower)->whereIn('id',$items)->pluck('id');
