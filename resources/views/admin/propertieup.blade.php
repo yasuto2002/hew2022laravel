@@ -64,8 +64,8 @@
         <option value={{$constructionType["id"]}}>{{$constructionType["name"]}}</option>
         @endforeach
 </select></br>
-    緯度:<input type="number" name="latitude" step="0.1"><br>
-    経度:<input type="number" name="longitude" step="0.1"><br>
+    緯度:<input type="number" name="latitude" step="0.00001"><br>
+    経度:<input type="number" name="longitude" step="0.00001"><br>
     備考:<br><textarea name="remarks" cols="30" rows="5" name="remarks"></textarea><br>
     <input type="submit" value="追加">
     <!-- <input type="submit" value="削除"> -->
