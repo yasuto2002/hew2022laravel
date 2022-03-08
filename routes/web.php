@@ -41,6 +41,8 @@ Route::resource('Buy','BuyController');
 Route::resource('BuySearch','BuySearchController');
 Route::resource('BuySearch','BuySearchController');
 Route::resource('PurchaseSearch','PurchaseSearchController');
+Route::resource('Pasforgotten','PasforgottenController');
+Route::resource('Forgetchange','ForgetchangeController');
 // Route::get('/', function () {
 //     return view('welcome');
 // });
