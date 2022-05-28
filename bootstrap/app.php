@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: https://yasuto0101.com');
+header('Access-Control-Allow-Origin: *');
 /*
 |--------------------------------------------------------------------------
 | Create The Application
