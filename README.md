@@ -9,4 +9,5 @@ http://35.72.119.115/
 制作期間 2022-02-01 → 2021-03-10<br>
 概要↓
 
-![IMG_0700](https://user-images.githubusercontent.com/77332271/164845617-60c6cb99-d765-45ff-bf95-6814c45569d6.JPG)
+<img width="647" alt="スクリーンショット 2023-01-20 14 38 40" src="https://user-images.githubusercontent.com/77332271/213625189-0c96dcf1-8146-4c0e-88f3-b07ac5f6dbbd.png">
+
